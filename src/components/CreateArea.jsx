@@ -3,7 +3,9 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 
-const CreateArea = ({ addNote }) => {
+// add edit todos and drag & drop todos functionality
+
+const CreateArea = ({ addNote, clearNotes }) => {
   const [fullNote, setFullNote] = useState({
     title: "",
     content: ""
@@ -55,6 +57,9 @@ const CreateArea = ({ addNote }) => {
           <Fab onClick={() => addNote(fullNote)}>
             <AddIcon />
           </Fab>
+        </Zoom>
+        <Zoom in={isClicked}>
+          <Fab onClick={() => clearNotes()}>Clear</Fab>
         </Zoom>
       </form>
     </div>

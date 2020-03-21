@@ -12,10 +12,12 @@ const App = () => {
   const deleteNote = id =>
     setNotes(prevNotes => prevNotes.filter((prevNote, index) => index !== id));
 
+  const clearNotes = () => setNotes([]);
+
   return (
     <div>
       <Header />
-      <CreateArea addNote={addNote} />
+      <CreateArea addNote={addNote} clearNotes={clearNotes} />
       {notes.map(({ title, content }, index) => (
         <Note
           key={index}
