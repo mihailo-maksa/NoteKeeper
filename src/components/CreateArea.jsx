@@ -58,9 +58,11 @@ const CreateArea = ({ addNote, clearNotes }) => {
             <AddIcon />
           </Fab>
         </Zoom>
-        <Zoom in={isClicked}>
-          <Fab onClick={() => clearNotes()}>Clear</Fab>
-        </Zoom>
+        {isClicked && (
+          <button type="button" onClick={() => clearNotes()}>
+            Clear
+          </button>
+        )}
       </form>
     </div>
   );
