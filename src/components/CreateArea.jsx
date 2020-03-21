@@ -16,7 +16,7 @@ const CreateArea = ({ addNote }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    setFullNote({
+    return setFullNote({
       title: "",
       content: ""
     });
