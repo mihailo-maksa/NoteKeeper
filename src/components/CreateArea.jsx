@@ -3,9 +3,7 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 
-// add edit todos and drag & drop todos functionality
-
-const CreateArea = ({ addNote, clearNotes }) => {
+const CreateArea = ({ addNote }) => {
   const [fullNote, setFullNote] = useState({
     title: "",
     content: ""
@@ -16,9 +14,9 @@ const CreateArea = ({ addNote, clearNotes }) => {
     setFullNote({ ...fullNote, [name]: value });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    return setFullNote({
+    setFullNote({
       title: "",
       content: ""
     });
@@ -27,6 +25,8 @@ const CreateArea = ({ addNote, clearNotes }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const toggle = () => setIsClicked(true);
+
+  const { noteTitle, noteContent } = fullNote;
 
   return (
     <div>
@@ -37,7 +37,7 @@ const CreateArea = ({ addNote, clearNotes }) => {
             name="title"
             placeholder="Title"
             onChange={handleChange}
-            value={fullNote.noteTitle}
+            value={noteTitle}
             spellCheck="false"
             autoComplete="off"
           />
@@ -49,20 +49,24 @@ const CreateArea = ({ addNote, clearNotes }) => {
           rows={isClicked ? 3 : 1}
           onClick={toggle}
           onChange={handleChange}
-          value={fullNote.noteContent}
+          value={noteContent}
           spellCheck="false"
           autoComplete="off"
         />
         <Zoom in={isClicked}>
-          <Fab onClick={() => addNote(fullNote)}>
+          <Fab
+            onClick={() => {
+              addNote(fullNote);
+              setFullNote({
+                title: "",
+                content: ""
+              });
+            }}
+            type="submit"
+          >
             <AddIcon />
           </Fab>
         </Zoom>
-        {isClicked && (
-          <button type="button" onClick={() => clearNotes()}>
-            Clear
-          </button>
-        )}
       </form>
     </div>
   );
