@@ -1,19 +1,21 @@
-import React, { useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import Note from "./Note";
-import CreateArea from "./CreateArea";
+import React, { useState } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import Note from './Note';
+import CreateArea from './CreateArea';
 
 const App = () => {
   const [notes, setNotes] = useState([]);
 
-  const addNote = fullNote => {
-    setNotes(prevNotes => [...prevNotes, fullNote]);
-    return (fullNote = { title: "", body: "" });
+  const addNote = (fullNote) => {
+    setNotes((prevNotes) => [...prevNotes, fullNote]);
+    return (fullNote = { title: '', body: '' });
   };
 
-  const deleteNote = id =>
-    setNotes(prevNotes => prevNotes.filter((prevNote, index) => index !== id));
+  const deleteNote = (id) =>
+    setNotes((prevNotes) =>
+      prevNotes.filter((prevNote, index) => index !== id)
+    );
 
   const clearNotes = () => setNotes([]);
 
@@ -23,9 +25,9 @@ const App = () => {
       <CreateArea addNote={addNote} clearNotes={clearNotes} />
       {notes.length ? (
         <button
-          type="button"
+          type='button'
           onClick={() => clearNotes()}
-          className="clear-notes"
+          className='clear-notes'
         >
           Clear All
         </button>

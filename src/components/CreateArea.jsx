@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import AddIcon from "@material-ui/icons/Add";
-import Fab from "@material-ui/core/Fab";
-import Zoom from "@material-ui/core/Zoom";
+import React, { useState } from 'react';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
+import Zoom from '@material-ui/core/Zoom';
 
 const CreateArea = ({ addNote }) => {
   const [fullNote, setFullNote] = useState({
-    title: "",
-    content: ""
+    title: '',
+    content: '',
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setFullNote({ ...fullNote, [name]: value });
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setFullNote({
-      title: "",
-      content: ""
+      title: '',
+      content: '',
     });
   };
 
@@ -29,40 +29,40 @@ const CreateArea = ({ addNote }) => {
   const { noteTitle, noteContent } = fullNote;
 
   return (
-    <div>
-      <form className="create-note" onSubmit={handleSubmit}>
+    <div className='form'>
+      <form className='create-note' onSubmit={handleSubmit}>
         {isClicked ? (
           <input
-            type="text"
-            name="title"
-            placeholder="Title"
+            type='text'
+            name='title'
+            placeholder='Title'
             onChange={handleChange}
             value={noteTitle}
-            spellCheck="false"
-            autoComplete="off"
+            spellCheck='false'
+            autoComplete='off'
           />
         ) : null}
         <textarea
-          type="text"
-          name="content"
-          placeholder="Take a note..."
+          type='text'
+          name='content'
+          placeholder='Take a note...'
           rows={isClicked ? 3 : 1}
           onClick={toggle}
           onChange={handleChange}
           value={noteContent}
-          spellCheck="false"
-          autoComplete="off"
+          spellCheck='false'
+          autoComplete='off'
         />
         <Zoom in={isClicked}>
           <Fab
             onClick={() => {
               addNote(fullNote);
               setFullNote({
-                title: "",
-                content: ""
+                title: '',
+                content: '',
               });
             }}
-            type="submit"
+            type='submit'
           >
             <AddIcon />
           </Fab>
